@@ -1,4 +1,4 @@
-package com.leonardo.persona.utils;
+package com.leonardo.persona.dto;
 
 import lombok.Builder;
 import lombok.Data;

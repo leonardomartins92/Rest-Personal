@@ -1,4 +1,4 @@
-package com.leonardo.persona.module;
+package com.leonardo.persona.entity;
 
 import com.leonardo.persona.utils.PhoneType;
 import lombok.AllArgsConstructor;

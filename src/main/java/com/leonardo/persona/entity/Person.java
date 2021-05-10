@@ -1,4 +1,4 @@
-package com.leonardo.persona.module;
+package com.leonardo.persona.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,7 +1,7 @@
 package com.leonardo.persona.service;
 
 
-import com.leonardo.persona.module.Phone;
+import com.leonardo.persona.entity.Phone;
 import com.leonardo.persona.repository.PhoneRepository;
 import org.springframework.stereotype.Service;
 
