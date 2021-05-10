@@ -1,13 +1,15 @@
 package com.leonardo.persona.service;
 
+import com.leonardo.persona.dto.MessageResponseDTO;
 import com.leonardo.persona.dto.PersonDTO;
 import com.leonardo.persona.entity.Person;
+import com.leonardo.persona.exception.PersonNotFoundException;
 import com.leonardo.persona.mapper.PersonMapper;
 import com.leonardo.persona.repository.PersonRepository;
-import com.leonardo.persona.dto.MessageResponseDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PersonService {
@@ -19,18 +21,33 @@ public class PersonService {
     }
 
     public MessageResponseDTO createPerson(PersonDTO personDTO){
+
         Person personTosave = personMapper.toModel(personDTO);
+        personRepository.save(personTosave);
          return MessageResponseDTO
                 .builder()
                 .message("Created Person with ID " + personTosave.getId())
                 .build();
     }
 
-    public List<Person> getAllPerson(){
-        return personRepository.findAll();
+    public List<PersonDTO> getAllPerson(){
+     List<Person> persons =  personRepository.findAll();
+     return persons.stream()
+             .map(personMapper::toDTO)
+             .collect(Collectors.toList());
+
+     /* Opcao 2
+     List<PersonDTO> personDTOS = new ArrayList<>();
+     for(var person : persons){
+         personDTOS.add(personMapper.toDTO(person));
+     }
+       return personDTOS;*/
     }
 
-    public Person getById(Long id){
-        return personRepository.findById(id).get();
+    public PersonDTO getById(Long id) throws PersonNotFoundException {
+        var person =   personRepository.findById(id)
+                    .orElseThrow(()->new PersonNotFoundException(id));
+
+        return personMapper.toDTO(person);
     }
 }
