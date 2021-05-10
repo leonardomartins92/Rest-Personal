@@ -3,17 +3,15 @@ package com.leonardo.persona.service;
 
 import com.leonardo.persona.entity.Phone;
 import com.leonardo.persona.repository.PhoneRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class PhoneService {
+    @Autowired
     private PhoneRepository phoneRepository;
-
-    public PhoneService(PhoneRepository phoneRepository) {
-        this.phoneRepository = phoneRepository;
-    }
 
     public void createPhone(Phone phone){
         phoneRepository.save(phone);

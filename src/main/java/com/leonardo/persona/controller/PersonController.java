@@ -16,12 +16,8 @@ import java.util.List;
 @RequestMapping("/api/v1/people")
 public class PersonController {
 
-    private PersonService personService;
-
     @Autowired
-    public PersonController(PersonService personService) {
-        this.personService = personService;
-    }
+    private PersonService personService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
